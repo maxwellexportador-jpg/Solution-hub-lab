@@ -1,0 +1,12 @@
+DATA (UTC): 2026-11-19T08:16:59Z
+BRANCH: freebuff/b87b49b1c898496c7819ae81
+COMMIT: 72f3034 (worktree, alterações não commitadas: 18 arquivos)
+LOTE: L4 (avaliação PT-BR)
+COMANDO: python3 -m solution_print eval --out evidence/eval --model sp-echo-baseline-v1
+AMBIENTE: Python 3.12.3 | Linux 6.1.102 x86_64
+--------------------------------------------------------------
+Avaliação sp-echo-baseline-v1: 3/11 aprovados (27.3%) em 0.01 ms médio
+Aviso: resultado SIMULADO (fixture), não é benchmark de modelo real.
+Relatórios: evidence/eval/sp-echo-baseline-v1_2026-11-19T08-16-59.712319Z.json | evidence/eval/sp-echo-baseline-v1_2026-11-19T08-16-59.712319Z.md
+--------------------------------------------------------------
+SAIDA (exit): 0

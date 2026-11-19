@@ -1,0 +1,23 @@
+DATA (UTC): 2026-11-19T08:16:59Z
+BRANCH: freebuff/b87b49b1c898496c7819ae81
+COMMIT: 72f3034 (worktree, alterações não commitadas: 18 arquivos)
+LOTE: L3 (roteador)
+COMANDO: python3 -m solution_print route --task ptbr
+AMBIENTE: Python 3.12.3 | Linux 6.1.102 x86_64
+--------------------------------------------------------------
+Modelo escolhido: sp-echo-baseline-v1 (echo)
+Cadeia autorizada: sp-echo-baseline-v1
+Motivos:
+  - provedor mock
+  - custo free
+  - cabe em 3.8 GB de RAM
+  - capacidades: chat, ptbr
+Recusados:
+  - llama-3.2-3b-instruct-gguf: status não operacional: planned; RAM insuficiente: requer 6.0 GB, disponível 3.8 GB; indisponível: status 'planned' (não implementado)
+  - local-openai-compatible: indisponível: endpoint não configurado: defina SOLUTION_PRINT_LOCAL_ENDPOINT
+  - minimind-3-small: RAM insuficiente: requer 4.0 GB, disponível 3.8 GB; indisponível: defina SOLUTION_PRINT_MINIMIND_CHECKPOINT com o caminho do checkpoint .pth
+  - qwen2.5-0.5b-instruct-gguf: indisponível: endpoint não configurado: defina SOLUTION_PRINT_ENDPOINT_QWEN_05B
+  - qwen2.5-1.5b-instruct-gguf: RAM insuficiente: requer 4.0 GB, disponível 3.8 GB; indisponível: endpoint não configurado: defina SOLUTION_PRINT_ENDPOINT_QWEN_15B
+  - qwen2.5-7b-instruct-gguf: RAM insuficiente: requer 12.0 GB, disponível 3.8 GB; Requer GPU com 6.0 GB VRAM; nenhuma GPU detectada; indisponível: endpoint não configurado: defina SOLUTION_PRINT_ENDPOINT_QWEN_7B
+--------------------------------------------------------------
+SAIDA (exit): 0

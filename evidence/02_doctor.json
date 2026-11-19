@@ -1,0 +1,121 @@
+DATA (UTC): 2026-11-19T08:16:59Z
+BRANCH: freebuff/b87b49b1c898496c7819ae81
+COMMIT: 72f3034 (worktree, alterações não commitadas: 18 arquivos)
+LOTE: L6 (hardware)
+COMANDO: python3 -m solution_print doctor --json
+AMBIENTE: Python 3.12.3 | Linux 6.1.102 x86_64
+--------------------------------------------------------------
+{
+  "version": "0.1.0",
+  "contract_version": "1.0",
+  "hardware": {
+    "ram_total_gb": 3.82,
+    "ram_available_gb": 3.44,
+    "cpu_cores": 2,
+    "cpu_model": "19/01",
+    "gpu_name": null,
+    "vram_gb": null,
+    "disk_free_gb": 9.65,
+    "platform": "Linux-6.1.102-x86_64-with-glibc2.39",
+    "python_version": "3.12.3",
+    "cgroup_limited": false,
+    "notes": [
+      "nvidia-smi ausente: nenhuma GPU CUDA detectada por esta via."
+    ]
+  },
+  "profile": {
+    "key": "cpu-low",
+    "label": "CPU / pouca memória",
+    "ram_gb": 4.0,
+    "cpu_cores": 2,
+    "vram_gb": null,
+    "accelerator": "cpu",
+    "description": "Inferência apenas de modelos minúsculos quantizados ou adaptadores simulados."
+  },
+  "summary": "RAM 3.8 GB (livre 3.4) | CPU 2 núcleos | sem GPU dedicada | perfil cpu-low | disco livre 9.7 GB",
+  "models": 7,
+  "adapters": [
+    {
+      "adapter": "openai_compatible",
+      "model": "llama-3.2-3b-instruct-gguf",
+      "available": false,
+      "reason": "endpoint não configurado: defina SOLUTION_PRINT_ENDPOINT_LLAMA32_3B",
+      "provider": "openai_compatible",
+      "cost": "free",
+      "hardware_ok": false,
+      "hardware_reasons": [
+        "RAM insuficiente: requer 6.0 GB, disponível 3.8 GB"
+      ]
+    },
+    {
+      "adapter": "openai_compatible",
+      "model": "local-openai-compatible",
+      "available": false,
+      "reason": "endpoint não configurado: defina SOLUTION_PRINT_LOCAL_ENDPOINT",
+      "provider": "openai_compatible",
+      "cost": "free",
+      "hardware_ok": true,
+      "hardware_reasons": []
+    },
+    {
+      "adapter": "minimind",
+      "model": "minimind-3-small",
+      "available": false,
+      "reason": "defina SOLUTION_PRINT_MINIMIND_CHECKPOINT com o caminho do checkpoint .pth",
+      "provider": "local",
+      "cost": "free",
+      "hardware_ok": false,
+      "hardware_reasons": [
+        "RAM insuficiente: requer 4.0 GB, disponível 3.8 GB"
+      ]
+    },
+    {
+      "adapter": "openai_compatible",
+      "model": "qwen2.5-0.5b-instruct-gguf",
+      "available": false,
+      "reason": "endpoint não configurado: defina SOLUTION_PRINT_ENDPOINT_QWEN_05B",
+      "provider": "openai_compatible",
+      "cost": "free",
+      "hardware_ok": true,
+      "hardware_reasons": []
+    },
+    {
+      "adapter": "openai_compatible",
+      "model": "qwen2.5-1.5b-instruct-gguf",
+      "available": false,
+      "reason": "endpoint não configurado: defina SOLUTION_PRINT_ENDPOINT_QWEN_15B",
+      "provider": "openai_compatible",
+      "cost": "free",
+      "hardware_ok": false,
+      "hardware_reasons": [
+        "RAM insuficiente: requer 4.0 GB, disponível 3.8 GB"
+      ]
+    },
+    {
+      "adapter": "openai_compatible",
+      "model": "qwen2.5-7b-instruct-gguf",
+      "available": false,
+      "reason": "endpoint não configurado: defina SOLUTION_PRINT_ENDPOINT_QWEN_7B",
+      "provider": "openai_compatible",
+      "cost": "free",
+      "hardware_ok": false,
+      "hardware_reasons": [
+        "RAM insuficiente: requer 12.0 GB, disponível 3.8 GB",
+        "Requer GPU com 6.0 GB VRAM; nenhuma GPU detectada"
+      ]
+    },
+    {
+      "adapter": "echo",
+      "model": "sp-echo-baseline-v1",
+      "available": true,
+      "reason": "fixture local sempre disponível (simulada, sem pesos)",
+      "provider": "mock",
+      "cost": "free",
+      "simulated": true,
+      "hardware_ok": true,
+      "hardware_reasons": []
+    }
+  ]
+}
+--------------------------------------------------------------
+SAIDA (exit): 0

@@ -4,3 +4,11 @@ __pycache__/
 out
 website/
 docs-minimind/
+.venv/
+.env
+.env.*
+!.env.example
+*.pth
+*.gguf
+*.safetensors
+checkpoints/
