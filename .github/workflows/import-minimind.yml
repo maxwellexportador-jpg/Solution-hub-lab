@@ -1,0 +1,43 @@
+name: Import MiniMind upstream
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_import:
+        description: "Type IMPORT to copy the complete upstream repository"
+        required: true
+        type: string
+permissions:
+  contents: write
+jobs:
+  import:
+    if: ${{ inputs.confirm_import == 'IMPORT' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Solution Print lab
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Clone upstream MiniMind
+        run: git clone --depth 1 https://github.com/jingyaogong/minimind.git /tmp/minimind
+      - name: Copy all tracked upstream files
+        run: |
+          rsync -a --exclude='.git' /tmp/minimind/ ./
+          cat > SOLUTION_PRINT_ORIGIN.md <<'EOF'
+          # Solution Print AI Lab — upstream attribution
+
+          This repository contains a copy of the upstream MiniMind project:
+          https://github.com/jingyaogong/minimind
+
+          Upstream author/project: jingyaogong / MiniMind.
+          Upstream license: Apache License 2.0. The original LICENSE file is retained.
+          Upstream source files are copied without intentional modification in this import.
+          Solution Print-specific integrations must be added as separate files or clearly marked changes.
+          Always retain upstream copyright and attribution notices; mark modified files as required by Apache-2.0.
+          EOF
+      - name: Commit and push imported source
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Import complete MiniMind upstream source" || echo "No changes to commit"
+          git push
