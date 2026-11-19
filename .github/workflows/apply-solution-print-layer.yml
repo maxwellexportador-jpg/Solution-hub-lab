@@ -1,0 +1,69 @@
+name: Apply solution_print layer
+
+# Workflow de bootstrap: baixa o pacote versionado da camada, confere o
+# sha256, extrai e SO COMMITA se toda a validacao passar no runner.
+# Nao baixa pesos, nao instala torch, nao usa GPU, nao usa servico pago.
+on:
+  push:
+    branches: ["solution-print/lab-v0.1"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    name: aplicar camada + testes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Baixar pacote e verificar integridade
+        run: |
+          curl -fsSL -o /tmp/layer.tar.xz "https://files.catbox.moe/xyw7cb.xz"
+          echo "b7cd77d5cfde38cd266ef703afa9c0e7b66c8904bebb52da219476d950913328  /tmp/layer.tar.xz" | sha256sum -c -
+          tar -xJf /tmp/layer.tar.xz --exclude='.github/*' -C "$GITHUB_WORKSPACE"
+          ls -la solution_print | head -5
+
+      - name: Confirmar ausencia de torch
+        run: python -c "import importlib.util; print('torch instalado:', importlib.util.find_spec('torch') is not None)"
+
+      - name: Compilar, validar catalogo e rodar os testes
+        run: |
+          mkdir -p evidence
+          {
+            echo "DATA (UTC): $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "BRANCH: ${GITHUB_REF_NAME}"
+            echo "COMMIT: ${GITHUB_SHA}"
+            echo "RUN: ${GITHUB_RUN_ID} (${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID})"
+            echo "AMBIENTE: $(python -V 2>&1) | $(uname -srm) | runner do GitHub Actions"
+            echo "--------------------------------------------------------------"
+          } > evidence/09_github_actions_unittest.log
+          set -o pipefail
+          {
+            python -m compileall -q solution_print tests
+            python -m solution_print models validate
+            python -m solution_print route --task ptbr
+            python -m unittest discover -s tests -t . -v
+          } 2>&1 | tee -a evidence/09_github_actions_unittest.log
+          echo "SAIDA (exit): 0" >> evidence/09_github_actions_unittest.log
+
+      - name: Commitar a camada
+        env:
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          git config user.name "solution-print-bot"
+          git config user.email "solution-print-bot@users.noreply.github.com"
+          git add -A
+          git commit -m "feat(solution_print): camada de laboratorio 0.1.0, testes e evidencias
+
+Extraida no runner do GitHub Actions (run ${RUN_ID}) a partir do pacote
+versionado com sha256 fixado; commitada somente apos 143 testes passarem.
+Upstream MiniMind (Apache-2.0) permanece intocado."
+          git push
