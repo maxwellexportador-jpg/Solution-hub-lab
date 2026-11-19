@@ -1,0 +1,31 @@
+PUBLICACAO EXTERNA E CI — registros verificados (2026-11-19, UTC)
+
+TENTATIVAS DE ESCRITA EM REPOSITORIOS EXTERNOS
+
+  Repositorio                  Operacao                          Resultado
+  solution-hub-ai              commit docs/ (2 arquivos)         OK  e4d8c4015e9a4fd2e36b441fba5cf4190d0ffed0  PR #50
+  solution-print-jarvis        commit docs/ (2 arquivos)         OK  4f538ac1180fb374f7299963e725aff1d70fcaae  PR #2
+  solution-print-ai-core       commit docs/ (1 arquivo)          403 (4 tentativas)
+  minha-ia-android             criacao de branch                 OK
+  minha-ia-android             commit docs/ (1 arquivo)          403 (2 tentativas)
+  solution-print-studio-3d     commit docs/ (1 arquivo)          403 (1 tentativa)
+  Solution-hub-lab             commit docs/integrations/README     OK  692c681db8fb5cc89efa864433b815698fc3e69e
+  Solution-hub-lab             commit README corrigido           OK  9a64487ed56332d018677edebe0e8b5a9215446e
+  Solution-hub-lab             commit docs/ (2 arquivos, 6 KB)     403
+
+Leitura honesta: a integracao do GitHub recusou commits em tres repositorios e tambem recusou
+commits maiores no proprio repositorio principal, enquanto commits pequenos passaram. Nao foi
+possivel isolar a causa (permissao por repositorio ou limite de escrita) a partir deste ambiente.
+Nada foi publicado nesses tres repositorios. Os contratos estao no laboratorio.
+
+GITHUB ACTIONS (execucoes reais, verificadas por API)
+
+  run 44488877974  bootstrap  failure  YAML invalido (mensagem de commit sem indentacao)
+  run 44489665564  bootstrap  success  143 testes OK no runner (Python 3.12.16), 128 arquivos publicados
+  run 44490005099  CI leve    success  Solution Print CI (Python 3.11 e 3.12, sem torch)
+
+PULL REQUESTS ABERTOS
+
+  Solution-hub-lab      #1  https://github.com/maxwellexportador-jpg/Solution-hub-lab/pull/1
+  solution-hub-ai       #50 https://github.com/maxwellexportador-jpg/solution-hub-ai/pull/50
+  solution-print-jarvis #2  https://github.com/maxwellexportador-jpg/solution-print-jarvis/pull/2
