@@ -1,0 +1,212 @@
+DATA (UTC): 2026-11-19T08:41:01Z
+BRANCH: solution-print/lab-v0.1
+COMMIT: a4feaca9ca5e1f16d75d9d07630079a4ebd60a6d
+RUN: 44489665564 (https://github.com/maxwellexportador-jpg/Solution-hub-lab/actions/runs/44489665564)
+AMBIENTE: Python 3.12.16 | Linux 7.0.0-1019-azure x86_64 | runner do GitHub Actions
+--------------------------------------------------------------
+Catálogo: 7 modelos, 0 problemas
+Modelo escolhido: sp-echo-baseline-v1 (echo)
+Cadeia autorizada: sp-echo-baseline-v1
+Motivos:
+  - provedor mock
+  - custo free
+  - cabe em 15.6 GB de RAM
+  - capacidades: chat, ptbr
+Recusados:
+  - llama-3.2-3b-instruct-gguf: status não operacional: planned; indisponível: status 'planned' (não implementado)
+  - local-openai-compatible: indisponível: endpoint não configurado: defina SOLUTION_PRINT_LOCAL_ENDPOINT
+  - minimind-3-small: indisponível: defina SOLUTION_PRINT_MINIMIND_CHECKPOINT com o caminho do checkpoint .pth
+  - qwen2.5-0.5b-instruct-gguf: indisponível: endpoint não configurado: defina SOLUTION_PRINT_ENDPOINT_QWEN_05B
+  - qwen2.5-1.5b-instruct-gguf: indisponível: endpoint não configurado: defina SOLUTION_PRINT_ENDPOINT_QWEN_15B
+  - qwen2.5-7b-instruct-gguf: Requer GPU com 6.0 GB VRAM; nenhuma GPU detectada; indisponível: endpoint não configurado: defina SOLUTION_PRINT_ENDPOINT_QWEN_7B
+test_is_available_and_simulated (tests.test_adapters.EchoAdapterTests.test_is_available_and_simulated) ... ok
+test_is_deterministic (tests.test_adapters.EchoAdapterTests.test_is_deterministic) ... ok
+test_rejects_empty_message (tests.test_adapters.EchoAdapterTests.test_rejects_empty_message) ... ok
+test_unavailable_without_checkpoint_and_without_importing_torch (tests.test_adapters.MiniMindAdapterTests.test_unavailable_without_checkpoint_and_without_importing_torch) ... ok
+test_api_key_not_sent_when_absent (tests.test_adapters.OpenAICompatibleAdapterTests.test_api_key_not_sent_when_absent) ... ok
+test_auth_error_is_not_leaked (tests.test_adapters.OpenAICompatibleAdapterTests.test_auth_error_is_not_leaked) ... ok
+test_empty_content (tests.test_adapters.OpenAICompatibleAdapterTests.test_empty_content) ... ok
+test_endpoint_from_environment (tests.test_adapters.OpenAICompatibleAdapterTests.test_endpoint_from_environment) ... ok
+test_endpoint_with_credentials_is_rejected (tests.test_adapters.OpenAICompatibleAdapterTests.test_endpoint_with_credentials_is_rejected) ... ok
+test_http_error_becomes_adapter_unavailable (tests.test_adapters.OpenAICompatibleAdapterTests.test_http_error_becomes_adapter_unavailable) ... ok
+test_malformed_json (tests.test_adapters.OpenAICompatibleAdapterTests.test_malformed_json) ... ok
+test_missing_choices (tests.test_adapters.OpenAICompatibleAdapterTests.test_missing_choices) ... ok
+test_no_endpoint_configured (tests.test_adapters.OpenAICompatibleAdapterTests.test_no_endpoint_configured) ... ok
+test_remote_endpoint_allowed_only_with_opt_in (tests.test_adapters.OpenAICompatibleAdapterTests.test_remote_endpoint_allowed_only_with_opt_in) ... ok
+test_remote_endpoint_blocked_by_default (tests.test_adapters.OpenAICompatibleAdapterTests.test_remote_endpoint_blocked_by_default) ... ok
+test_successful_inference (tests.test_adapters.OpenAICompatibleAdapterTests.test_successful_inference) ... ok
+test_timeout_is_typed (tests.test_adapters.OpenAICompatibleAdapterTests.test_timeout_is_typed) ... ok
+test_body_limit_rejects_oversized_payload (tests.test_api.ApiTests.test_body_limit_rejects_oversized_payload) ... ok
+test_chat_completion_with_fixture (tests.test_api.ApiTests.test_chat_completion_with_fixture) ... ok
+test_health (tests.test_api.ApiTests.test_health) ... ok
+test_invalid_json_returns_400 (tests.test_api.ApiTests.test_invalid_json_returns_400) ... ok
+test_invalid_role_returns_400 (tests.test_api.ApiTests.test_invalid_role_returns_400) ... ok
+test_missing_messages_returns_400 (tests.test_api.ApiTests.test_missing_messages_returns_400) ... ok
+test_models_endpoint_marks_simulated_models (tests.test_api.ApiTests.test_models_endpoint_marks_simulated_models) ... ok
+test_requires_token (tests.test_api.ApiTests.test_requires_token) ... ok
+test_route_endpoint (tests.test_api.ApiTests.test_route_endpoint) ... ok
+test_secret_in_prompt_is_blocked (tests.test_api.ApiTests.test_secret_in_prompt_is_blocked) ... ok
+test_unknown_endpoint_returns_404 (tests.test_api.ApiTests.test_unknown_endpoint_returns_404) ... ok
+test_unknown_model_returns_404 (tests.test_api.ApiTests.test_unknown_model_returns_404) ... ok
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 38808)
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/home/runner/work/Solution-hub-lab/Solution-hub-lab/tests/helpers.py", line 68, in do_POST
+    self._handle("POST")
+  File "/home/runner/work/Solution-hub-lab/Solution-hub-lab/tests/helpers.py", line 62, in _handle
+    self.wfile.write(encoded)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/socketserver.py", line 845, in write
+    self._sock.sendall(b)
+BrokenPipeError: [Errno 32] Broken pipe
+----------------------------------------
+test_invalid_case_is_rejected (tests.test_evaluation.CaseLoadingTests.test_invalid_case_is_rejected) ... ok
+test_suite_is_valid_and_covers_required_categories (tests.test_evaluation.CaseLoadingTests.test_suite_is_valid_and_covers_required_categories) ... ok
+test_consistency_requires_second_output (tests.test_evaluation.CheckTests.test_consistency_requires_second_output) ... ok
+test_contains_any_all_not_contains (tests.test_evaluation.CheckTests.test_contains_any_all_not_contains) ... ok
+test_not_empty (tests.test_evaluation.CheckTests.test_not_empty) ... ok
+test_regex (tests.test_evaluation.CheckTests.test_regex) ... ok
+test_unknown_check_fails_closed (tests.test_evaluation.CheckTests.test_unknown_check_fails_closed) ... ok
+test_word_limits (tests.test_evaluation.CheckTests.test_word_limits) ... ok
+test_adapter_failure_is_recorded_not_raised (tests.test_evaluation.EvaluatorTests.test_adapter_failure_is_recorded_not_raised) ... ok
+test_consistency_case_calls_model_twice (tests.test_evaluation.EvaluatorTests.test_consistency_case_calls_model_twice) ... ok
+test_failure_is_reported_with_details (tests.test_evaluation.EvaluatorTests.test_failure_is_reported_with_details) ... ok
+test_full_suite_against_fixture_is_not_a_benchmark (tests.test_evaluation.EvaluatorTests.test_full_suite_against_fixture_is_not_a_benchmark) ... ok
+test_report_structure_and_simulated_flag (tests.test_evaluation.EvaluatorTests.test_report_structure_and_simulated_flag) ... ok
+test_compare_detects_regression (tests.test_evaluation.ReportTests.test_compare_detects_regression) ... ok
+test_write_report_creates_json_and_markdown (tests.test_evaluation.ReportTests.test_write_report_creates_json_and_markdown) ... ok
+test_config_is_persisted_with_hash_for_reproduction (tests.test_experiments.ExperimentTests.test_config_is_persisted_with_hash_for_reproduction) ... ok
+test_empty_name_is_rejected (tests.test_experiments.ExperimentTests.test_empty_name_is_rejected) ... ok
+test_environment_snapshot_has_real_data (tests.test_experiments.ExperimentTests.test_environment_snapshot_has_real_data) ... ok
+test_git_version_returns_fields (tests.test_experiments.ExperimentTests.test_git_version_returns_fields) ... ok
+test_hash_is_stable_and_order_independent (tests.test_experiments.ExperimentTests.test_hash_is_stable_and_order_independent) ... ok
+test_invalid_final_status_is_rejected (tests.test_experiments.ExperimentTests.test_invalid_final_status_is_rejected) ... ok
+test_list_and_load (tests.test_experiments.ExperimentTests.test_list_and_load) ... ok
+test_start_and_finish_roundtrip (tests.test_experiments.ExperimentTests.test_start_and_finish_roundtrip) ... ok
+test_classify_cpu_profiles (tests.test_hardware.HardwareTests.test_classify_cpu_profiles) ... ok
+test_classify_gpu_profiles (tests.test_hardware.HardwareTests.test_classify_gpu_profiles) ... ok
+test_detect_returns_real_values (tests.test_hardware.HardwareTests.test_detect_returns_real_values) ... ok
+test_headroom_keeps_safety_margin (tests.test_hardware.HardwareTests.test_headroom_keeps_safety_margin) ... ok
+test_profiles_cover_required_tiers (tests.test_hardware.HardwareTests.test_profiles_cover_required_tiers) ... ok
+test_requirements_respect_ram_and_vram (tests.test_hardware.HardwareTests.test_requirements_respect_ram_and_vram) ... ok
+test_summary_is_human_readable (tests.test_hardware.HardwareTests.test_summary_is_human_readable) ... ok
+test_discover_and_infer_over_http (tests.test_integrations.AiCoreClientTests.test_discover_and_infer_over_http) ... ok
+test_remote_plain_http_is_rejected (tests.test_integrations.AiCoreClientTests.test_remote_plain_http_is_rejected) ... ok
+test_inference_with_delegated_scope (tests.test_integrations.AiCoreServiceTests.test_inference_with_delegated_scope) ... ok
+test_inference_without_scope_is_denied (tests.test_integrations.AiCoreServiceTests.test_inference_without_scope_is_denied) ... ok
+test_inference_without_tenant_is_denied (tests.test_integrations.AiCoreServiceTests.test_inference_without_tenant_is_denied) ... ok
+test_manifest_is_serialisable (tests.test_integrations.AiCoreServiceTests.test_manifest_is_serialisable) ... ok
+test_android_chat (tests.test_integrations.AndroidAndStudioClientTests.test_android_chat) ... ok
+test_android_rejects_bad_locale_before_network (tests.test_integrations.AndroidAndStudioClientTests.test_android_rejects_bad_locale_before_network) ... ok
+test_studio_request (tests.test_integrations.AndroidAndStudioClientTests.test_studio_request) ... ok
+test_clean_task_is_submitted (tests.test_integrations.CrmClientTests.test_clean_task_is_submitted) ... ok
+test_pii_is_blocked_before_any_request (tests.test_integrations.CrmClientTests.test_pii_is_blocked_before_any_request) ... ok
+test_authorised_task_types_only (tests.test_integrations.CrmContractTests.test_authorised_task_types_only) ... ok
+test_crm_task_refuses_pii (tests.test_integrations.CrmContractTests.test_crm_task_refuses_pii) ... ok
+test_error_status_raises_integration_error (tests.test_integrations.HttpClientTests.test_error_status_raises_integration_error) ... ok
+test_non_json_response_raises (tests.test_integrations.HttpClientTests.test_non_json_response_raises) ... ok
+test_timeout_is_reported (tests.test_integrations.HttpClientTests.test_timeout_is_reported) ... ok
+test_bridge_never_executes (tests.test_integrations.JarvisTests.test_bridge_never_executes) ... ok
+test_model_selection_and_inference (tests.test_integrations.JarvisTests.test_model_selection_and_inference) ... ok
+test_proposal_envelope_cannot_claim_execution (tests.test_integrations.JarvisTests.test_proposal_envelope_cannot_claim_execution) ... ok
+test_supervisor_rejects_executed_status (tests.test_integrations.JarvisTests.test_supervisor_rejects_executed_status) ... ----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 52494)
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/home/runner/work/Solution-hub-lab/Solution-hub-lab/tests/helpers.py", line 65, in do_GET
+    self._handle("GET")
+  File "/home/runner/work/Solution-hub-lab/Solution-hub-lab/tests/helpers.py", line 62, in _handle
+    self.wfile.write(encoded)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/socketserver.py", line 845, in write
+    self._sock.sendall(b)
+BrokenPipeError: [Errno 32] Broken pipe
+----------------------------------------
+ok
+test_tool_calls_become_proposals_only (tests.test_integrations.JarvisTests.test_tool_calls_become_proposals_only) ... ok
+test_manifest_exposes_only_free_models (tests.test_integrations.ManifestTests.test_manifest_exposes_only_free_models) ... ok
+test_mobile_contract (tests.test_integrations.MobileAndStudioContractTests.test_mobile_contract) ... ok
+test_studio_contract (tests.test_integrations.MobileAndStudioContractTests.test_studio_contract) ... ok
+test_manifest_rejects_duplicate_models (tests.test_integrations.ModelDescriptorTests.test_manifest_rejects_duplicate_models) ... ok
+test_paid_model_is_rejected_in_manifest (tests.test_integrations.ModelDescriptorTests.test_paid_model_is_rejected_in_manifest) ... ok
+test_allows_anonymous_business_text (tests.test_integrations.PiiTests.test_allows_anonymous_business_text) ... ok
+test_blocks_pii_fields_and_patterns (tests.test_integrations.PiiTests.test_blocks_pii_fields_and_patterns) ... ok
+test_contract_version_mismatch_is_rejected (tests.test_integrations.TenantAndEnvelopeTests.test_contract_version_mismatch_is_rejected) ... ok
+test_envelope_validation (tests.test_integrations.TenantAndEnvelopeTests.test_envelope_validation) ... ok
+test_tenant_rejects_invalid_identifiers (tests.test_integrations.TenantAndEnvelopeTests.test_tenant_rejects_invalid_identifiers) ... ok
+test_tenant_requires_scopes (tests.test_integrations.TenantAndEnvelopeTests.test_tenant_requires_scopes) ... ok
+test_valid_tenant (tests.test_integrations.TenantAndEnvelopeTests.test_valid_tenant) ... ok
+test_builtin_catalog_loads_and_is_valid (tests.test_registry.RegistryTests.test_builtin_catalog_loads_and_is_valid) ... ok
+test_duplicate_model_is_rejected (tests.test_registry.RegistryTests.test_duplicate_model_is_rejected) ... ok
+test_filter_by_capability_and_cost (tests.test_registry.RegistryTests.test_filter_by_capability_and_cost) ... ok
+test_free_non_local_model_must_document_network (tests.test_registry.RegistryTests.test_free_non_local_model_must_document_network) ... ok
+test_invalid_model_id_is_rejected (tests.test_registry.RegistryTests.test_invalid_model_id_is_rejected) ... ok
+test_lookup_missing_model_raises (tests.test_registry.RegistryTests.test_lookup_missing_model_raises) ... ok
+test_minimind_entry_preserves_upstream_attribution (tests.test_registry.RegistryTests.test_minimind_entry_preserves_upstream_attribution) ... ok
+test_public_view_hides_endpoint_configuration (tests.test_registry.RegistryTests.test_public_view_hides_endpoint_configuration) ... ok
+test_report_flags_hardware_fit (tests.test_registry.RegistryTests.test_report_flags_hardware_fit) ... ok
+test_runnable_excludes_planned_models (tests.test_registry.RegistryTests.test_runnable_excludes_planned_models) ... ok
+test_save_and_reload_roundtrip (tests.test_registry.RegistryTests.test_save_and_reload_roundtrip) ... ok
+test_unknown_field_in_catalog_is_rejected (tests.test_registry.RegistryTests.test_unknown_field_in_catalog_is_rejected) ... ok
+test_unsupported_schema_version_is_rejected (tests.test_registry.RegistryTests.test_unsupported_schema_version_is_rejected) ... ok
+test_all_models_failing_raises (tests.test_router.RouterExecutionTests.test_all_models_failing_raises) ... ok
+test_authorised_fallback_is_used (tests.test_router.RouterExecutionTests.test_authorised_fallback_is_used) ... ok
+test_execution_log_is_persisted_to_disk (tests.test_router.RouterExecutionTests.test_execution_log_is_persisted_to_disk) ... ok
+test_missing_messages_raises (tests.test_router.RouterExecutionTests.test_missing_messages_raises) ... ok
+test_successful_inference_is_logged_without_prompt_text (tests.test_router.RouterExecutionTests.test_successful_inference_is_logged_without_prompt_text) ... ok
+test_timeout_is_reported_and_fallback_applies (tests.test_router.RouterExecutionTests.test_timeout_is_reported_and_fallback_applies) ... ok
+test_unauthorised_fallback_is_not_used (tests.test_router.RouterExecutionTests.test_unauthorised_fallback_is_not_used) ... ok
+test_hardware_budget_excludes_big_models (tests.test_router.RouterRoutingTests.test_hardware_budget_excludes_big_models) ... ok
+test_missing_preferred_model_raises (tests.test_router.RouterRoutingTests.test_missing_preferred_model_raises) ... ok
+test_paid_cost_is_rejected_by_policy (tests.test_router.RouterRoutingTests.test_paid_cost_is_rejected_by_policy) ... ok
+test_preferred_model_is_respected (tests.test_router.RouterRoutingTests.test_preferred_model_is_respected) ... ok
+test_routes_to_free_local_capable_model (tests.test_router.RouterRoutingTests.test_routes_to_free_local_capable_model) ... ok
+test_unavailable_model_is_rejected_with_reason (tests.test_router.RouterRoutingTests.test_unavailable_model_is_rejected_with_reason) ... ok
+test_unknown_task_raises_validation_error (tests.test_router.RouterRoutingTests.test_unknown_task_raises_validation_error) ... ok
+test_accepts_normal_text_and_trims (tests.test_safety.InputValidationTests.test_accepts_normal_text_and_trims) ... ok
+test_rejects_empty_non_string_and_null_byte (tests.test_safety.InputValidationTests.test_rejects_empty_non_string_and_null_byte) ... ok
+test_rejects_oversized_input (tests.test_safety.InputValidationTests.test_rejects_oversized_input) ... ok
+test_flags_prompt_injection_and_tool_markers (tests.test_safety.OutputSanitizationTests.test_flags_prompt_injection_and_tool_markers) ... ok
+test_removes_ansi_and_control_characters (tests.test_safety.OutputSanitizationTests.test_removes_ansi_and_control_characters) ... ok
+test_truncates_long_output (tests.test_safety.OutputSanitizationTests.test_truncates_long_output) ... ok
+test_finds_secret_types_without_values (tests.test_safety.SecretDetectionTests.test_finds_secret_types_without_values) ... ok
+test_redacts_values (tests.test_safety.SecretDetectionTests.test_redacts_values) ... ok
+test_audit_log_has_digest_not_arguments (tests.test_safety.ToolGatewayTests.test_audit_log_has_digest_not_arguments) ... ok
+test_authorised_tool_never_executes (tests.test_safety.ToolGatewayTests.test_authorised_tool_never_executes) ... ok
+test_call_limit_is_enforced (tests.test_safety.ToolGatewayTests.test_call_limit_is_enforced) ... ok
+test_execute_is_always_forbidden (tests.test_safety.ToolGatewayTests.test_execute_is_always_forbidden) ... ok
+test_malformed_tool_calls_are_ignored_or_denied (tests.test_safety.ToolGatewayTests.test_malformed_tool_calls_are_ignored_or_denied) ... ok
+test_privileged_tool_cannot_be_registered (tests.test_safety.ToolGatewayTests.test_privileged_tool_cannot_be_registered) ... ok
+test_shell_metacharacters_in_arguments_are_denied (tests.test_safety.ToolGatewayTests.test_shell_metacharacters_in_arguments_are_denied) ... ok
+test_unauthorised_argument_is_denied (tests.test_safety.ToolGatewayTests.test_unauthorised_argument_is_denied) ... ok
+test_unknown_tool_is_denied (tests.test_safety.ToolGatewayTests.test_unknown_tool_is_denied) ... ok
+test_catalog_has_no_paid_models (tests.test_upstream.SecurityHygieneTests.test_catalog_has_no_paid_models) ... ok
+test_gitignore_excludes_local_artifacts (tests.test_upstream.SecurityHygieneTests.test_gitignore_excludes_local_artifacts) ... ok
+test_no_obvious_secrets_in_our_code (tests.test_upstream.SecurityHygieneTests.test_no_obvious_secrets_in_our_code) ... ok
+test_origin_document_exists (tests.test_upstream.UpstreamPreservationTests.test_origin_document_exists) ... ok
+test_readme_and_license_are_intact (tests.test_upstream.UpstreamPreservationTests.test_readme_and_license_are_intact) ... ok
+test_solution_print_layer_is_separate (tests.test_upstream.UpstreamPreservationTests.test_solution_print_layer_is_separate) ... ok
+test_upstream_directories_exist (tests.test_upstream.UpstreamPreservationTests.test_upstream_directories_exist) ... ok
+
+----------------------------------------------------------------------
+Ran 143 tests in 9.673s
+
+OK
+SAIDA (exit): 0

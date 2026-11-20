@@ -1,0 +1,72 @@
+name: Solution Print CI
+
+# Somente testes leves: stdlib do Python 3.11+, sem PyTorch, sem CUDA, sem
+# download de pesos/datasets e sem servicos externos.
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "solution_print/**"
+      - "tests/**"
+      - "evidence/**"
+      - ".github/workflows/solution-print-ci.yml"
+  pull_request:
+    paths:
+      - "solution_print/**"
+      - "tests/**"
+      - ".github/workflows/solution-print-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    name: unittest (stdlib, sem torch)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Confirmar que PyTorch nao esta instalado
+        run: python -c "import importlib.util; print('torch instalado:', importlib.util.find_spec('torch') is not None)"
+
+      - name: Compilar a camada (checagem de sintaxe)
+        run: python -m compileall -q solution_print tests
+
+      - name: Catalogo de modelos valido
+        run: python -m solution_print models validate
+
+      - name: Diagnostico de hardware e roteamento
+        run: |
+          python -m solution_print doctor
+          python -m solution_print route --task chat
+
+      - name: Testes unitarios e de contrato
+        run: python -m unittest discover -s tests -t . -v
+
+      - name: Avaliacao simulada (fixture, nao e benchmark real)
+        run: python -m solution_print eval --out "${{ runner.temp }}/eval"
+
+      - name: Publicar relatorio
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: solution-print-test-report-py${{ matrix.python-version }}
+          path: ${{ runner.temp }}/eval
+          if-no-files-found: warn
+
+  # Testes que dependem de hardware/GPU/pesos ficam fora do CI leve.
+  gpu-gated:
+    name: GPU / CUDA / pesos reais (manual, bloqueado)
+    runs-on: ubuntu-latest
+    if: false
+    steps:
+      - run: echo "Requer GPU, CUDA e checkpoint MiniMind; executar apenas em maquina autorizada."

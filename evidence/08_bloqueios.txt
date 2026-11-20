@@ -1,0 +1,42 @@
+BLOQUEIOS REAIS DE AMBIENTE — verificados nesta máquina (2026-11-19, UTC)
+
+1) PyTorch ausente
+$ python3 -c "import importlib.util as u; print(u.find_spec('torch') is not None)"
+False
+   Consequência: o adaptador MiniMind não pode executar inferência real aqui.
+   A camada inteira (registro, roteador, avaliação, API, integrações) foi
+   projetada para não importar torch no nível de módulo, e é isso que permite
+   os 143 testes passarem sem GPU.
+
+2) transformers ausente
+$ python3 -c "import importlib.util as u; print(u.find_spec('transformers') is not None)"
+False
+
+3) Checkpoint MiniMind ausente
+$ echo "${SOLUTION_PRINT_MINIMIND_CHECKPOINT:-<vazio>}"
+<vazio>
+   O laboratório não baixa pesos automaticamente (regra da missão).
+
+4) GPU/CUDA ausente
+$ nvidia-smi
+bash: nvidia-smi: command not found
+
+5) Nenhum endpoint OpenAI-compatible local configurado
+   Variáveis SOLUTION_PRINT_LOCAL_ENDPOINT / SOLUTION_PRINT_ENDPOINT_* vazias:
+   o roteador recusa os modelos abertos por "endpoint não configurado".
+
+6) GitHub Actions não executado
+   O workflow .github/workflows/solution-print-ci.yml foi criado, mas só será
+   comprovado quando houver execução com URL de run (não há como disparar
+   Actions a partir deste ambiente). Não está marcado como executado.
+
+7) Push do repositório
+   Este worktree do chat não tem remote git autenticado nem token disponível;
+   a publicação no GitHub é feita pela integração (commit de arquivos), não por
+   `git push`.
+
+O que ISSO significa para os resultados:
+- "143 testes OK" é real e reproduzível sem GPU.
+- A inferência executada na CLI é do adaptador de fixture (simulated=True),
+  não de um LLM. Ela valida o caminho completo (roteador -> adaptador ->
+  resposta -> log), não a qualidade de um modelo.
